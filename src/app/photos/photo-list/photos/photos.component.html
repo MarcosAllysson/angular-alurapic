@@ -1,0 +1,18 @@
+<p class="text-center text-muted" *ngIf="!photos.length">Sorry, no photos.</p>
+
+<ol class="list-unstyled">
+  <li *ngFor="let cols of rows" class="row no-gutters">
+    <div *ngFor="let photo of cols" class="col-4" appDarkenOnHover>
+      <app-card [title]="photo.nickname">
+        <app-photo
+          [url]="photo.img"
+          [name]="photo.name"
+          [nickname]="photo.nickname"
+          [birthday]="photo.birthday"
+          [description]="photo.occupation"
+          [alt]="photo.alt"
+        ></app-photo>
+      </app-card>
+    </div>
+  </li>
+</ol>

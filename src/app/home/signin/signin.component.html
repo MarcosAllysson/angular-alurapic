@@ -1,0 +1,46 @@
+<h2 class="text-center">Login</h2>
+
+<form [formGroup]="loginForm">
+  <div class="mb-3">
+    <label for="inputEmail" class="form-label">Email</label>
+    <input
+      #userNameInput
+      type="email"
+      class="form-control"
+      id="inputEmail"
+      formControlName="userName"
+      autofocus
+    />
+    <app-validator-message
+      *ngIf="loginForm.get('userName').errors?.required"
+      text="Username is required!"
+    ></app-validator-message>
+  </div>
+
+  <div class="mb-3">
+    <label for="inputPassword" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="inputPassword"
+      formControlName="password"
+    />
+    <app-validator-message
+      *ngIf="loginForm.get('password').errors?.required"
+      text="Password is required!"
+    ></app-validator-message>
+  </div>
+
+  <button
+    [disabled]="loginForm.invalid"
+    type="submit"
+    class="btn btn-primary"
+    (click)="login()"
+  >
+    Login
+  </button>
+</form>
+
+<p>
+  Not a user? <a [routerLink]="['register']"><b>Register now</b></a>
+</p>

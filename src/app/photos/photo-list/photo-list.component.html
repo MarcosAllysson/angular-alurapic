@@ -1,0 +1,9 @@
+<!-- <h1 style="background: red" appDarkenOnHover brightness="10%">Photos</h1> -->
+
+<app-search (onTyping)="filter = $event" [value]="filter"> </app-search>
+
+<!-- <app-photos [photos]="photos"> </app-photos> -->
+<app-photos [photos]="photos | filterByDescription: filter"> </app-photos>
+
+<app-load-button [hasMore]="hasMore"> </app-load-button>
+<!-- <app-load-button (click)="loadMoreButton()" [hasMore]="hasMore"></app-load-button> -->
