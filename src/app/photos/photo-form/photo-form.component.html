@@ -1,11 +1,35 @@
 <div class="container">
   <form [formGroup]="photoForm" class="row">
     <div class="col-md-6 text-center">
-      <input type="file" accept="image/*" formControlName="file" />
-      <app-validator-message
-        *ngIf="photoForm.get('file').errors?.required"
-        text="File is required!"
-      ></app-validator-message>
+      <div class="form-group" *ngIf="!previewImage; else showPreview">
+        <button
+          type="button"
+          immediateClick
+          class="btn btn-primary"
+          (click)="fileInput.click()"
+        >
+          Choose image
+        </button>
+        <input
+          #fileInput
+          hidden
+          type="file"
+          accept="image/*"
+          formControlName="file"
+          (change)="handleFile($event.target.files[0])"
+        />
+
+        <app-validator-message
+          *ngIf="photoForm.get('file').errors?.required"
+          text="File is required!"
+        ></app-validator-message>
+      </div>
+
+      <ng-template #showPreview>
+        <div class="text-center">
+          <app-photo [url]="previewImage" name="Preview"></app-photo>
+        </div>
+      </ng-template>
     </div>
 
     <div class="col-md-6">
@@ -15,14 +39,20 @@
           placeholder="photo description"
           formControlName="description"
         ></textarea>
-        <app-validator-message
-          *ngIf="photoForm.get('description').errors?.required"
-          text="description is required!"
-        ></app-validator-message>
-        <app-validator-message
-          *ngIf="photoForm.get('description').errors?.maxlength"
-          text="Max 300 characters!"
-        ></app-validator-message>
+
+        <ng-container *ngIf="photoForm.controls.description.touched">
+          <app-validator-message
+            *ngIf="photoForm.get('description').errors?.required"
+            text="Description is required!"
+          ></app-validator-message>
+        </ng-container>
+
+        <ng-container *ngIf="photoForm.controls.description.touched">
+          <app-validator-message
+            *ngIf="photoForm.get('description').errors?.maxlength"
+            text="Max 300 characters!"
+          ></app-validator-message>
+        </ng-container>
       </div>
 
       <div class="form-group">

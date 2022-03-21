@@ -11,7 +11,8 @@ import { PhotoService } from '../photo/photo.service';
 })
 export class PhotoFormComponent implements OnInit {
 
-  // file: File;
+  file: File;
+  previewImage: string = "";
   photoForm: FormGroup;
 
   constructor(
@@ -36,6 +37,15 @@ export class PhotoFormComponent implements OnInit {
     });
   }
 
+  handleFile(file: File) {
+    this.file = file;
+
+    // converting to base64
+    const reader = new FileReader();
+    reader.onload = (event: any) => this.previewImage = event.target.result;
+    reader.readAsDataURL(this.file);
+  }
+
   upload() {
     const data: IPhoto = this.photoForm.getRawValue();
     this._photoService.upload(data);
@@ -44,5 +54,7 @@ export class PhotoFormComponent implements OnInit {
 
   cleanForm(): void {
     this.photoForm.reset();
+    this.previewImage = "";
+    this.file = null;
   }
 }
