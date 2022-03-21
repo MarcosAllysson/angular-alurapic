@@ -1,0 +1,22 @@
+<div class="bg-white border" *ngIf="photo; else characterNotFound">
+  <div class="row">
+    <div class="col-lg-4">
+      <img src="{{ photo?.img }}" alt="" srcset="" width="400" height="500" />
+    </div>
+
+    <div class="col-lg-8 p-4">
+      <small>
+        <p class="text-left break-word">{{ photo?.name }}</p>
+        <hr />
+      </small>
+
+      <div class="mt-4"></div>
+    </div>
+  </div>
+</div>
+
+<ng-template #characterNotFound>
+  <div class="container">
+    <h2 class="text-center">Character was not found!</h2>
+  </div>
+</ng-template>

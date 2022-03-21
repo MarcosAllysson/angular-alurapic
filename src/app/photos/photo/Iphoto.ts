@@ -1,4 +1,5 @@
 export interface Photo {
+    char_id: number;
     birthday: any;
     img: string;
     name: string;

@@ -27,4 +27,10 @@ export class PhotoService {
         alert(`Uploaded:\n${photoForm.description} \n${photoForm.file}`);
         // return this.http.post<IPhoto>(`${fake_api_path}/upload`, photoForm);
     }
+
+    findCharacterById(char_id: number): Observable<Photo> {
+        const url: string = 'https://www.breakingbadapi.com/api/characters/';
+
+        return this.http.get<Photo>(`${url}${char_id}`);
+    }
 }

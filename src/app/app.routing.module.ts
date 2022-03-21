@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 
 import { AuthGuard } from "./core/auth/auth.guard";
 import { NotFoundComponent } from "./errors/not-found/not-found.component";
+import { PhotoDetailComponent } from "./photos/photo-detail/photo-detail.component";
 import { PhotoFormComponent } from "./photos/photo-form/photo-form.component";
 import { PhotoListComponent } from "./photos/photo-list/photo-list.component";
 import { PhotoListResolver } from "./photos/photo-list/photo-list.resolver";
@@ -36,6 +37,10 @@ const routes: Routes = [
         path: 'addphotos',
         component: PhotoFormComponent,
         // canActivate: [AuthGuard]
+    },
+    {
+        path: 'photodetail/:photoId',
+        component: PhotoDetailComponent,
     },
     {
         path: '**',

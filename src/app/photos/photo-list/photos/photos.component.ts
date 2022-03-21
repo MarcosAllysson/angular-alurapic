@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+
 import { Photo } from '../../photo/Iphoto';
 
 @Component({
