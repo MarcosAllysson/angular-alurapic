@@ -23,7 +23,10 @@ const routes: Routes = [
     },
     {
         path: 'home',
-        loadChildren: './home/home.module#HomeModule' // class name
+        loadChildren: './home/home.module#HomeModule', // class name
+        data: {
+            title: 'HomePage'
+        }
     },
     {
         path: 'listphotos',
@@ -31,21 +34,33 @@ const routes: Routes = [
         resolve: {
             // making property 'photos' available outside
             photos: PhotoListResolver
+        },
+        data: {
+            title: 'Timeline'
         }
     },
     {
         path: 'addphotos',
         component: PhotoFormComponent,
-        // canActivate: [AuthGuard]
+        // canActivate: [AuthGuard],
+        data: {
+            title: 'Add photo'
+        }
     },
     {
         path: 'photodetail/:photoId',
         component: PhotoDetailComponent,
+        data: {
+            title: 'Detalhe da foto'
+        }
     },
     {
         path: '**',
-        component: NotFoundComponent
-    },
+        component: NotFoundComponent,
+        data: {
+            title: 'Página Inexistente'
+        }
+    }
 ];
 
 @NgModule({
