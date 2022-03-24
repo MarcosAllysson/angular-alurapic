@@ -1,0 +1,12 @@
+<div [ngClass]="{ 'active-menu': isShown }">
+  <div class="menu-bar">
+    <button class="btn btn-info btn-sm" tabindex="0" (click)="toggle()">
+      X
+    </button>
+
+    <!-- itens do menu -->
+    <ng-content> </ng-content>
+  </div>
+
+  <div class="overlay" (click)="toggle()"></div>
+</div>

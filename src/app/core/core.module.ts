@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 import { LoadingModule } from "../shared/components/loading/loading.module";
+import { MenuModule } from "../shared/components/menu/menu.module";
 import { RequestInterceptor } from "./auth/request.interceptor";
 import { FooterComponent } from "./footer/footer.component";
 import { HeaderComponent } from "./header/header.component";
@@ -17,7 +18,9 @@ import { HeaderComponent } from "./header/header.component";
     imports: [
         CommonModule,
         RouterModule,
-        LoadingModule
+        LoadingModule,
+        MenuModule,
+        // ShowIfLogged
     ],
     exports: [
         HeaderComponent,
