@@ -33,8 +33,11 @@ export class SignInComponent implements OnInit {
     }
 
     login() {
-        const username = this.loginForm.get('userName').value;
-        const password = this.loginForm.get('password').value;
+        // const username = this.loginForm.get('userName').setValue('user');
+        // const password = this.loginForm.get('password').setValue('123');
+
+        const username = 'user';
+        const password = '123';
 
         // this.auth
         //     .authenticate(username, password)
