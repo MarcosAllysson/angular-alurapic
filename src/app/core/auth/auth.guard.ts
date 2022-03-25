@@ -18,7 +18,14 @@ export class AuthGuard implements CanActivate {
 
         //is user is not logged in, it can activate this route
         if (!this.userService.isLoggedIn()) {
-            this.router.navigate(['']);
+            this.router.navigate(
+                [''],
+                {
+                    queryParams: {
+                        fromUrl: state.url
+                    }
+                }
+            );
             return false;
         }
 

@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { AuthService } from "src/app/core/auth/auth.service";
 import { PlatformDetectorService } from "src/app/core/platform/platform-detector.service";
@@ -13,6 +13,7 @@ import { PlatformDetectorService } from "src/app/core/platform/platform-detector
 
 export class SignInComponent implements OnInit {
 
+    fromUrl: string;
     loginForm: FormGroup;
     @ViewChild('userNameInput') userNameInput: ElementRef<HTMLInputElement>;
 
@@ -20,10 +21,14 @@ export class SignInComponent implements OnInit {
         private formBuilder: FormBuilder,
         private auth: AuthService,
         private router: Router,
-        private platformDetectorService: PlatformDetectorService
+        private platformDetectorService: PlatformDetectorService,
+        private activatedRoute: ActivatedRoute
     ) { }
 
     ngOnInit(): void {
+        // pegando rota antes de autenticar
+        this.activatedRoute.queryParams.subscribe(params => this.fromUrl = params.fromUrl);
+
         this.loginForm = this.formBuilder.group({
             userName: ['', Validators.required],
             password: ['', Validators.required]
@@ -57,6 +62,14 @@ export class SignInComponent implements OnInit {
 
             //another way
             this.router.navigate(['listphotos']);
+
+            // direcionando pra rota anterior antes de estar autenticado, e passando pós login
+            // if(this.fromUrl){
+            //     this.router.navigateByUrl(this.fromUrl);
+            // }else{
+            //     this.router.navigate(['listphotos']);
+            // }
+
         } else {
             alert('Error when authenticating...');
             this.resetForm();
